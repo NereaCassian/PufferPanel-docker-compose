@@ -1,0 +1,37 @@
+version: '3.9'
+
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: webserver
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl:/ssl/
+    networks:
+      - puffernet  
+
+  pufferpanel:
+    image: pufferpanel/pufferpanel:latest
+    container_name: pufferpanel
+    restart: unless-stopped
+    ports:
+      - 5657:5657
+    volumes:
+      - pufferpanel-config:/etc/pufferpanel
+      - ./config/config.json:/etc/pufferpanel/config.json
+      - /var/lib/pufferpanel:/var/lib/pufferpanel
+    networks:
+      - puffernet
+    depends_on:
+      - webserver  
+
+networks:
+  agsp:  
+    name: puffernet 
+volumes:
+  pufferpanel-config:
