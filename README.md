@@ -11,3 +11,5 @@ A docker compose file to deploy PufferPanel with a nginx reverse proxy
 6. Run ``docker exec -it pufferpanel /pufferpanel/pufferpanel user add``
 7. You have it running
 
+The original Pufferpanel repo 
+https://github.com/pufferpanel/pufferpanel
