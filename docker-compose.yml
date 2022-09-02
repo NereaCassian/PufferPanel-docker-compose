@@ -31,7 +31,7 @@ services:
       - webserver  
 
 networks:
-  agsp:  
+  puffernet:  
     name: puffernet 
 volumes:
   pufferpanel-config:
